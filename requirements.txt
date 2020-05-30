@@ -1,3 +1,5 @@
 spidev
 rpi.gpio
+paho-mqtt
+pixel-ring
 git+https://github.com/respeaker/pixel_ring.git
