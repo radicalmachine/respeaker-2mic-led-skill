@@ -20,13 +20,13 @@ from adapt.intent import IntentBuilder
 from mycroft.util.log import LOG
 from mycroft import intent_file_handler
 
-from pixel_ring import pixel_ring
-from gpiozero import LED
+//from pixel_ring import pixel_ring
+//from gpiozero import LED
 
-class ReSpeaker_4mic_hat(MycroftSkill):
+class ReSpeaker_2mic_hat(MycroftSkill):
 
 	def __init__(self):
-		super(ReSpeaker_4mic_hat, self).__init__(name="ReSpeaker_4mic_hat")
+		super(ReSpeaker_2mic_hat, self).__init__(name="ReSpeaker_2mic_hat")
 
 	def initialize(self):
 		self.log.info("Pixel Ring: Initializing")
@@ -98,4 +98,4 @@ class ReSpeaker_4mic_hat(MycroftSkill):
 		self.speak_dialog("DisablePixelRing")
 
 def create_skill():
-	return ReSpeaker_4mic_hat()
+	return ReSpeaker_2mic_hat()
