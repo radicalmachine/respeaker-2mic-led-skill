@@ -2,7 +2,7 @@
 Use the Respeaker 4-Mic Array Hat with Mycroft A.I.
 
 ## Description
-This skills supports the led pixel ring of seeedstudio ReSpeaker 2-Mic HAT.
+This skills supports the led pixel ring of seeedstudio ReSpeaker 4-Mic HAT.
 
 ## Examples
  - "Enable pixel ring"
