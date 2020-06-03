@@ -1,3 +1,2 @@
 spidev
 rpi.gpio
-pixel-ring
