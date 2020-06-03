@@ -18,7 +18,7 @@ from mycroft.skills.core import MycroftSkill, intent_handler
 from adapt.intent import IntentBuilder
 from mycroft.util.log import LOG
 from mycroft import intent_file_handler
-from pixels import pixels
+from .pixels import pixels
 
 class ReSpeaker_2mic_hat(MycroftSkill):
 

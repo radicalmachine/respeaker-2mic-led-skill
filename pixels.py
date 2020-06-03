@@ -16,8 +16,7 @@
 LED light pattern like Google Home
 """
 
-#from pixel_ring.apa102 import APA102
-import apa102
+from .apa102 import APA102
 import time
 import threading
 try:
