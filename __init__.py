@@ -88,7 +88,7 @@ class ReSpeaker_2mic_hat(MycroftSkill):
         self.speak_dialog("EnablePixelRing")
 
     @intent_handler(IntentBuilder("").require("DisablePixelRing"))
-        def handle_disable_pixel_ring_intent(self, message):
+    def handle_disable_pixel_ring_intent(self, message):
         self.disable()
         self.speak_dialog("DisablePixelRing")
 

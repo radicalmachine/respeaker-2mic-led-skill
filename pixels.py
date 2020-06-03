@@ -16,7 +16,8 @@
 LED light pattern like Google Home
 """
 
-from pixel_ring.apa102 import APA102
+#from pixel_ring.apa102 import APA102
+import apa102
 import time
 import threading
 try:
@@ -29,9 +30,13 @@ class Pixels:
 
     def __init__(self):
         self.basis = [0] * 3 * self.PIXELS_N
-        self.basis[2] = 3
-        self.basis[5] = 6
-        self.basis[8] = 3
+        #self.basis[2] = 3
+        #self.basis[5] = 6
+        #self.basis[8] = 3
+        self.basis[0] = 2
+        self.basis[3] = 1
+        self.basis[4] = 1
+        self.basis[7] = 2
         self.colors = [0] * 3 * self.PIXELS_N
         self.dev = APA102(num_led=self.PIXELS_N)
         self.next = threading.Event()
@@ -68,8 +73,8 @@ class Pixels:
             func()
 
     def _wakeup(self, direction=0):
-        offset = int(((direction + 180 + 30) % 180) / 60)
-        basis = self.basis[-offset*3:] + self.basis[:-offset*3]
+        #offset = int(((direction + 180 + 30) % 180) / 60)
+        #basis = self.basis[-offset*3:] + self.basis[:-offset*3]
         for i in range(1, 25):
             colors = [i * v for v in basis]
             self.write(colors)
