@@ -20,10 +20,10 @@ from mycroft.util.log import LOG
 from mycroft import intent_file_handler
 from .pixels import pixels
 
-class ReSpeaker_2mic_hat(MycroftSkill):
+class Respeaker2MicHatSkill(MycroftSkill):
 
     def __init__(self):
-        super(ReSpeaker_2mic_hat, self).__init__(name="ReSpeaker_2mic_hat")
+        super(Respeaker2MicHatSkill, self).__init__(name="Respeaker2MmicHatSkill")
 
     def initialize(self):
         self.log.info("Pixel Ring: Initializing")
@@ -93,4 +93,4 @@ class ReSpeaker_2mic_hat(MycroftSkill):
         self.speak_dialog("DisablePixelRing")
 
 def create_skill():
-	return ReSpeaker_2mic_hat()
+	return Respeaker2MicHatSkill()
