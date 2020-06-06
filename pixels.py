@@ -16,7 +16,7 @@
 LED light pattern like Google Home
 """
 
-from .apa102 import APA102
+import apa102
 import time
 import threading
 try:
@@ -37,7 +37,7 @@ class Pixels:
         self.basis[4] = 1
         self.basis[7] = 2
         self.colors = [0] * 3 * self.PIXELS_N
-        self.dev = APA102(num_led=self.PIXELS_N)
+        self.dev = apa102.APA102(num_led=self.PIXELS_N)
         self.next = threading.Event()
         self.queue = Queue.Queue()
         self.thread = threading.Thread(target=self._run)
@@ -75,7 +75,7 @@ class Pixels:
         #offset = int(((direction + 180 + 30) % 180) / 60)
         #basis = self.basis[-offset*3:] + self.basis[:-offset*3]
         for i in range(1, 25):
-            colors = [i * v for v in basis]
+            colors = [i * v for v in self.basis]
             self.write(colors)
             time.sleep(0.01)
         self.colors = colors
