@@ -27,8 +27,11 @@ class Respeaker2MicHatSkill(MycroftSkill):
         super(Respeaker2MicHatSkill, self).__init__(name="Respeaker2MmicHatSkill")
 
     def initialize(self):
+        self.pixels = Pixels()
         self.log.info("Pixel Ring: Initializing")
         self.enable()
+        self.pixels.wakeup()
+        self.pixels.off()
 
     def enable(self):
         self.log.info("Pixel Ring: Enabling")
@@ -46,7 +49,6 @@ class Respeaker2MicHatSkill(MycroftSkill):
                         self.handler_listener_speak)
         self.add_event('recognizer_loop:audio_output_end',
                         self.handle_listener_off)
-        #pixels.off()
 
     def disable(self):
         self.log.info("Pixel Ring: Disabling")
@@ -63,29 +65,29 @@ class Respeaker2MicHatSkill(MycroftSkill):
 #        pixels.off()
 
     def handle_listener_wakeup(self, message):
-        pixels = Pixels()
         self.log.info("Pixel Ring: Wakeup")
-        pixels.wakeup()
+        self.pixels.wakeup()
+        time.sleep(3)
 
     def handle_listener_listen(self, message):
-        pixels = Pixels()
         self.log.info("Pixel Ring: Listen")
-        pixels.listen()
+        self.pixels.listen()
+        time.sleep(3)
 
     def handle_listener_think(self, message):
-        pixels = Pixels()
         self.log.info("Pixel Ring: Think")
-        pixels.think()
+        self.pixels.think()
+        time.sleep(3)
 
     def handler_listener_speak(self, message):
-        pixels = Pixels()
         self.log.info("Pixel Ring: Speak")
-        pixels.speak()
+        self.pixels.speak()
+        time.sleep(3)
 
     def handle_listener_off(self, message):
-        pixels = Pixels()
         self.log.info("Pixel Ring: Off")
-        pixels.off()
+        self.pixels.off()
+        time.sleep(3)
 
     @intent_handler(IntentBuilder("").require("EnablePixelRing"))
     def handle_enable_pixel_ring_intent(self, message):
