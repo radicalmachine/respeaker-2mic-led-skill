@@ -18,7 +18,8 @@ from mycroft.skills.core import MycroftSkill, intent_handler
 from adapt.intent import IntentBuilder
 from mycroft.util.log import LOG
 from mycroft import intent_file_handler
-from .pixels import pixels
+from .pixels import Pixels
+
 
 class Respeaker2MicHatSkill(MycroftSkill):
 
@@ -27,13 +28,14 @@ class Respeaker2MicHatSkill(MycroftSkill):
 
     def initialize(self):
         self.log.info("Pixel Ring: Initializing")
-        #pixels.wakeup()
         self.enable()
 
     def enable(self):
         self.log.info("Pixel Ring: Enabling")
        	self.add_event('recognizer_loop:wakeword',
                         self.handle_listener_wakeup)
+        self.add_event('recognizer_loop:record_begin',
+                        self.handle_listener_listen)
         self.add_event('recognizer_loop:record_end',
                         self.handle_listener_off)
         self.add_event('mycroft.skill.handler.start',
@@ -44,41 +46,44 @@ class Respeaker2MicHatSkill(MycroftSkill):
                         self.handler_listener_speak)
         self.add_event('recognizer_loop:audio_output_end',
                         self.handle_listener_off)
-        #pixel_ring.off()
-        pixels.off()
+        #pixels.off()
 
     def disable(self):
         self.log.info("Pixel Ring: Disabling")
         self.remove_event('recognizer_loop:wakeup')
+        self.remove_event('recognizer_loop:record_begin')
         self.remove_event('recognizer_loop:record_end')
         self.remove_event('recognizer_loop:audio_output_start')
         self.remove_event('recognizer_loop:audio_output_end')
         self.remove_event('mycroft.skill.handler.start')
         self.remove_event('mycroft.skill.handler.complete')
 
-    def shutdown(self):
-        self.log.info("Pixel Ring: Shutdown")
-        #pixel_ring.off()
-        pixels.off()
-        #self.power.off()
+#    def shutdown(self):
+#        self.log.info("Pixel Ring: Shutdown")
+#        pixels.off()
 
     def handle_listener_wakeup(self, message):
+        pixels = Pixels()
         self.log.info("Pixel Ring: Wakeup")
         pixels.wakeup()
 
-    def handle_listener_off(self, message):
-        self.log.info("Pixel Ring: Off")
-        pixels.off()
+    def handle_listener_listen(self, message):
+        pixels = Pixels()
+        self.log.info("Pixel Ring: Listen")
+        pixels.listen()
 
     def handle_listener_think(self, message):
+        pixels = Pixels()
         self.log.info("Pixel Ring: Think")
         pixels.think()
 
     def handler_listener_speak(self, message):
+        pixels = Pixels()
         self.log.info("Pixel Ring: Speak")
         pixels.speak()
 
     def handle_listener_off(self, message):
+        pixels = Pixels()
         self.log.info("Pixel Ring: Off")
         pixels.off()
 
