@@ -156,7 +156,9 @@ if __name__ == '__main__':
         try:
             print('pixels wakeup')
             pixels.wakeup()
+            time.sleep(3)
             print('pixels listen')
+            pixels.listen()
             time.sleep(3)
             print('pixels think')
             pixels.think()

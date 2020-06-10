@@ -24,7 +24,7 @@ from .pixels import Pixels
 class Respeaker2MicHatSkill(MycroftSkill):
 
     def __init__(self):
-        super(Respeaker2MicHatSkill, self).__init__(name="Respeaker2MmicHatSkill")
+        super(Respeaker2MicHatSkill, self).__init__(name="Respeaker2MicHatSkill")
 
     def initialize(self):
         self.pixels = Pixels()
@@ -59,10 +59,6 @@ class Respeaker2MicHatSkill(MycroftSkill):
         self.remove_event('recognizer_loop:audio_output_end')
         self.remove_event('mycroft.skill.handler.start')
         self.remove_event('mycroft.skill.handler.complete')
-
-#    def shutdown(self):
-#        self.log.info("Pixel Ring: Shutdown")
-#        pixels.off()
 
     def handle_listener_wakeup(self, message):
         self.log.info("Pixel Ring: Wakeup")
