@@ -5,18 +5,18 @@ Use the Respeaker 2-Mic Array Hat with Mycroft A.I.
 This skills supports gpio and led pixel of seeedstudio ReSpeaker 2-Mic HAT.
 
 ## Examples Command
- Enable pixel ring
- Disable pixel ring 
- Turn Red Led On
- Turn Green Led Off
- Blink Red Led
- Green Led Status
+ - Enable pixel ring
+ - Disable pixel ring 
+ - Turn Red Led On
+ - Turn Green Led Off
+ - Blink Red Led
+ - Green Led Status
 
 ## Examples Respond
- Led is Off
- Led is On
- Button Pressed
- Button Released
+ - Led is Off
+ - Led is On
+ - Button Pressed
+ - Button Released
 
 ## Credits
 Dominik (@domcross)<br>
