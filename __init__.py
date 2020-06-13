@@ -31,12 +31,16 @@ sys.path.append(abspath(dirname(__file__)))
 
 class Respeaker2MicLedSkill(MycroftSkill):
 
-    def on_led_change(self, gpio):
+    def on_gpio12_change(self):
         """used to report the state of the led.
         This is attached to the on change event.  And will speak the
         status of the led.
         """
-        status = GPIO.get(gpio)
+        status = GPIO.get("GPIO12")
+        self.speak("Led is %s" % status)
+
+    def on_gpio13_change(self):
+        status = GPIO.get("GPIO13")
         self.speak("Led is %s" % status)
 
     def on_button_change(self):
@@ -45,8 +49,8 @@ class Respeaker2MicLedSkill(MycroftSkill):
 
     def __init__(self):
         self.blink_active = False
-        GPIO.on("GPIO12",self.on_led_change("GPIO12"))
-        GPIO.on("GPIO13",self.on_led_change("GPIO13"))
+        GPIO.on("GPIO12",self.on_gpio12_change)
+        GPIO.on("GPIO13",self.on_gpio13_change)
         GPIO.on("Button",self.on_button_change)
         super(Respeaker2MicLedSkill, self).__init__(name="Respeaker2MicLedSkill")
 
@@ -178,6 +182,7 @@ class Respeaker2MicLedSkill(MycroftSkill):
         elif message.data["systemobject"] == "Path":
             self.speak_dialog("path")
             for path in sys.path:
+                self.speak(path)
 
     def handle_command_intent(self, message):
         """This will handle all command intents for controlling GPIO
@@ -197,20 +202,20 @@ class Respeaker2MicLedSkill(MycroftSkill):
                 else:
                     self.blink_active = True
                     self.blink_gpio12()
-            if message.data["ioobject"].upper() == "GREEN LED":
+            elif message.data["ioobject"].upper() == "GREEN LED":
                 self.speak_dialog("greenledblink")
                 if self.blink_active:
                     self.blink_active = False
                 else:
                     self.blink_active = True
                     self.blink_gpio13()
-            if message.data["ioparam"].upper() == "STOP":
+            elif message.data["ioparam"].upper() == "STOP":
                 self.stop()
         elif message.data["command"].upper() == "STATUS":
             if message.data["ioobject"].upper() == "RED LED":
-                self.on_led_change("GPIO12")
-            if message.data["ioobject"].upper() == "GREEN LED":
-                self.on_led_change("GPIO13")
+                self.on_gpio12_change()
+            elif message.data["ioobject"].upper() == "GREEN LED":
+                self.on_gpio13_change()
         elif message.data["command"].upper() == "TURN":
             if message.data["ioobject"].upper() == "RED LED":
                 if "ioparam" in message.data:
@@ -222,7 +227,7 @@ class Respeaker2MicLedSkill(MycroftSkill):
                         GPIO.set("GPIO12","Off")
                 else:
                     self.speak_dialog("ipparamrequired")
-            if message.data["ioobject"].upper() == "GREEN LED":
+            elif message.data["ioobject"].upper() == "GREEN LED":
                 if "ioparam" in message.data:
                     if message.data["ioparam"].upper() == "ON":
                         self.blink_active = False
