@@ -115,21 +115,38 @@ if __name__=="__main__":
     def printgpio():
         print(GPIO_STATE)
 
-    def blink_led():
+    def blink_gpio12():
         if blink_active:
-            threading.Timer(0.5, blink_led).start()
+            threading.Timer(0.5, blink_gpio12).start()
         if get("GPIO12")!="On":
             set("GPIO12","On")
         else:
             set("GPIO12","Off")
 
-    on("GPIO12",printgpio)
+    def blink_gpio13():
+        if blink_active:
+            threading.Timer(0.5, blink_gpio13).start()
+        if get("GPIO13")!="On":
+            set("GPIO13","On")
+        else:
+            set("GPIO13","Off")
 
+    on("GPIO12",printgpio)
     set("GPIO12","On")
     blink_active = True
-    blink_led()
+    blink_gpio12()
     time.sleep(10)
     blink_active = False
+
+    time.sleep(2)
+
+    on("GPIO13",printgpio)
+    set("GPIO13","On")
+    blink_active = True
+    blink_gpio13()
+    time.sleep(10)
+    blink_active = False
+
     if pi_interface:
         print("GPIO is valid")
 

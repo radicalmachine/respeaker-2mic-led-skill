@@ -14,7 +14,7 @@
 
 import time
 from mycroft.messagebus.message import Message
-from mycroft.skills.core import MycroftSkill, intent_handler
+from mycroft.skills.core import intent_handler
 from adapt.intent import IntentBuilder
 from mycroft.util.log import LOG
 from mycroft import intent_file_handler
@@ -25,8 +25,17 @@ import sys
 import requests
 import json
 import threading
-import GPIO
+
 sys.path.append(abspath(dirname(__file__)))
+
+from adapt.intent import IntentBuilder
+try:
+    from mycroft.skills.core import MycroftSkill
+except:
+    class MycroftSkill:
+        pass
+
+import GPIO
 
 
 class Respeaker2MicLedSkill(MycroftSkill):
@@ -195,8 +204,10 @@ class Respeaker2MicLedSkill(MycroftSkill):
                 intent.
         """
         if message.data["command"].upper() == "BLINKING":
-            if message.data["ioobject"].upper() == "RED LED":
-                self.speak_dialog("redledblink")
+            #if message.data["ioobject"].upper() == "RED LED":
+            if message.data["ioobject"].upper() == "BLUE LED":
+                #self.speak_dialog("redledblink")
+                self.speak_dialog("blueledblink")
                 if self.blink_active:
                     self.blink_active = False
                 else:
@@ -212,12 +223,14 @@ class Respeaker2MicLedSkill(MycroftSkill):
             elif message.data["ioparam"].upper() == "STOP":
                 self.stop()
         elif message.data["command"].upper() == "STATUS":
-            if message.data["ioobject"].upper() == "RED LED":
+            #if message.data["ioobject"].upper() == "RED LED":
+            if message.data["ioobject"].upper() == "BLUE LED":
                 self.on_gpio12_change()
             elif message.data["ioobject"].upper() == "GREEN LED":
                 self.on_gpio13_change()
         elif message.data["command"].upper() == "TURN":
-            if message.data["ioobject"].upper() == "RED LED":
+            #if message.data["ioobject"].upper() == "RED LED":
+            if message.data["ioobject"].upper() == "BLUE LED":
                 if "ioparam" in message.data:
                     if message.data["ioparam"].upper() == "ON":
                         self.blink_active = False
@@ -243,4 +256,4 @@ class Respeaker2MicLedSkill(MycroftSkill):
         self.blink_active = False
 
 def create_skill():
-	return Respeaker2MicLedSkill()
+    return Respeaker2MicLedSkill()
