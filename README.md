@@ -1,26 +1,52 @@
-# <img src='https://camo.githubusercontent.com/16b0193e895780987f64fdbef7551c4adbd4033f/68747470733a2f2f7261772e6769746861636b2e636f6d2f466f7274417765736f6d652f466f6e742d417765736f6d652f6d61737465722f737667732f736f6c69642f636f672e737667' card_color='#22a7f0' width='50' height='50' style='vertical-align:bottom'/> ReSpeaker 2-Mic Array LED Mycroft A.I. Skill
-Use the Respeaker 2-Mic Array Hat with Mycroft A.I.
+# Raspberry Pi GPIO Demo using Respeaker 2-Mic-HAT
+Example of interacting with GPIO pins on a Raspberry Pi
 
-## Description
-This skills supports gpio and led pixel of seeedstudio ReSpeaker 2-Mic HAT.
+## About 
+This Skill demonstrates how to interact with the Raspberry Pi GPIO pins using a Mycroft Skill. This Skill shows both reading data from a GPIO port (detecting a button press) and writing data to the port (hook illuminating LEDs) on Respeaker 2-Mic HAT board.
 
-## Examples Command
- - Enable pixel ring
- - Disable pixel ring 
- - Turn Red Led On
- - Turn Green Led Off
- - Blink Red Led
- - Green Led Status
+### Preparation
 
-## Examples Respond
- - Led is Off
- - Led is On
- - Button Pressed
- - Button Released
+[You will need to first install the GPIO libraries for Picroft, and add some additional permissions](https://mycroft.ai/documentation/picroft/#using-the-gpio-pins-on-the-raspberry-pi-3).
 
-## Credits
-Dominik (@domcross)<br>
-J1nx (@j1nx)<br>
-Art McGee (@amcgee7)
+### Generation
 
+The documentation is done using Sphinx, which picks up comments from the code.  The following will generate the html docs.
 
+```make docs```
+
+You can then find the generated html in ```docs/build/html/index.html```.  Open that file in your browser and you should be able to navigate to the docs.
+
+### Installing from the `makefile`
+
+* Change the Makefile IP address for the RPi installation to the IP address of your RPi. 
+
+That is, edit the file `makefile` using your favorite editor like `nano` or `vi`. 
+
+The line you will need to change is `scp -r * pi@192.168.205.115:/opt/mycroft/skills/skill-gpio`. 
+
+Change this to have the IP address of your RPi. 
+
+* Create the folder ```/opt/mycroft/skills/skill-gpio``` on the RPi for the installer. 
+
+You can do this by using the command `mkdir /opt/mycroft/skills/skill-gpio`
+
+### Notes
+
+If the LED blinking is too fast, it will be difficult to get a command to execute because there will be a voice response when the the LED turns off and on. Turn the blinking to a lower frequency to be able to execute commands. 
+
+## Examples 
+* "Turn red LED on"
+* "Turn red LED off"
+* "Blink green LED"
+* "Blink red LED"
+
+## Supported Devices 
+platform_mark1 platform_picroft 
+
+## Category
+**IoT**
+
+## Tags
+#IoT
+#GPIO
+#RPi
