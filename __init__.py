@@ -254,6 +254,7 @@ class Respeaker2MicLedSkill(MycroftSkill):
     def stop(self):
         """This function will clean up the Skill"""
         self.blink_active = False
+        self.speak("Stop Blinking, L,E,D")
 
 def create_skill():
     return Respeaker2MicLedSkill()

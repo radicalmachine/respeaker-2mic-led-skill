@@ -132,7 +132,14 @@ if __name__=="__main__":
             set("GPIO13","Off")
 
     on("GPIO12",printgpio)
+    on("GPIO13",printgpio)
+
+    set("GPIO13","On")
+    time.sleep(2)
     set("GPIO12","On")
+
+    time.sleep(2)
+
     blink_active = True
     blink_gpio12()
     time.sleep(10)
@@ -140,12 +147,16 @@ if __name__=="__main__":
 
     time.sleep(2)
 
-    on("GPIO13",printgpio)
-    set("GPIO13","On")
     blink_active = True
     blink_gpio13()
     time.sleep(10)
     blink_active = False
+
+    time.sleep(2)
+
+    set("GPIO12","Off")
+    time.sleep(2)
+    set("GPIO13","Off")
 
     if pi_interface:
         print("GPIO is valid")
