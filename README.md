@@ -4,6 +4,9 @@ Use the Respeaker 2-Mic Array Hat with Mycroft A.I.
 ## Description
 This skills supports gpio and led pixel of seeedstudio ReSpeaker 2-Mic HAT.
 
+## Change Colours
+Editing the pixels.py file at lines 34 - 40 will allow you to experiment with colours. This fork has them set blue which personally looks nicer with my home automation setup
+
 ## Examples Command
  - Enable pixel ring
  - Disable pixel ring 
@@ -19,6 +22,7 @@ This skills supports gpio and led pixel of seeedstudio ReSpeaker 2-Mic HAT.
  - Button Released
 
 ## Credits
+Dony71 (@Dony71)<br>
 Dominik (@domcross)<br>
 J1nx (@j1nx)<br>
 Art McGee (@amcgee7)
