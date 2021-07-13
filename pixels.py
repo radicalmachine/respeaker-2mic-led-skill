@@ -31,13 +31,13 @@ class Pixels:
 
     def __init__(self):
         self.basis = [0] * 3 * self.PIXELS_N
-        #self.basis[2] = 3
-        #self.basis[5] = 6
-        #self.basis[8] = 3
-        self.basis[0] = 2
-        self.basis[3] = 1
-        self.basis[4] = 1
-        self.basis[7] = 2
+        self.basis[2] = 3
+        self.basis[5] = 6
+        self.basis[8] = 3
+        #self.basis[0] = 2
+        #self.basis[3] = 1
+        #self.basis[4] = 1
+        #self.basis[7] = 2
         self.colors = [0] * 3 * self.PIXELS_N
         #self.dev = apa102.APA102(num_led=self.PIXELS_N)
         self.dev = APA102(num_led=self.PIXELS_N)
