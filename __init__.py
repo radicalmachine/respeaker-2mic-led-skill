@@ -134,27 +134,27 @@ class Respeaker2MicLedSkill(MycroftSkill):
     def handle_listener_wakeup(self, message):
         self.log.info("Pixel Ring: Wakeup")
         self.pixels.wakeup()
-        time.sleep(3)
+        time.sleep(2)
 
     def handle_listener_listen(self, message):
         self.log.info("Pixel Ring: Listen")
         self.pixels.listen()
-        time.sleep(3)
+        time.sleep(2)
 
     def handle_listener_think(self, message):
         self.log.info("Pixel Ring: Think")
         self.pixels.think()
-        time.sleep(3)
+        time.sleep(2)
 
     def handler_listener_speak(self, message):
         self.log.info("Pixel Ring: Speak")
         self.pixels.speak()
-        time.sleep(3)
+        time.sleep(2)
 
     def handle_listener_off(self, message):
         self.log.info("Pixel Ring: Off")
         self.pixels.off()
-        time.sleep(3)
+        time.sleep(2)
 
     @intent_handler(IntentBuilder("").require("EnablePixelRing"))
     def handle_enable_pixel_ring_intent(self, message):
