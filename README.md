@@ -4,6 +4,12 @@ Use the Respeaker 2-Mic Array Hat with Mycroft A.I.
 ## Description
 This skills supports gpio and led pixel of seeedstudio ReSpeaker 2-Mic HAT.
 
+## How to install
+Use the mycroft-msm command to install this skill. 
+
+1) mycroft-msm install https://github.com/radicalmachine/respeaker-2mic-led-skill
+2) Reboot your picroft (advised)
+
 ## Change Colours
 Editing the pixels.py file at lines 34 - 40 will allow you to experiment with colours. This fork has them set blue which personally looks nicer with my home automation setup
 
